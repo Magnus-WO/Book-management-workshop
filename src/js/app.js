@@ -3,7 +3,7 @@ import Ui from "./ui.js";
 // Select DOM elements
 const openAddModalButton = document.querySelector(".add-books__button");
 const closeAddModalButton = document.querySelector(".form__cancel-button");
-const formModal = document.querySelector(".form__modal");
+const formModal = document.querySelector(".form-modal");
 const printedBookContainer = document.querySelector(".form__printed-book");
 const audioBookContainer = document.querySelector(".form__audio-book");
 
@@ -41,6 +41,19 @@ const audioFields = [
 ];
 
 // Adding eventlisteners
+document.addEventListener("DOMContentLoaded", () => {
+  Ui.displayAddModal(
+    openAddModalButton,
+    formModal,
+    printedBookContainer,
+    audioBookContainer
+  );
+});
+
+document.addEventListener("click", () => {
+  Ui.closeAddModal(closeAddModalButton, formModal);
+});
+
 bookTypeDropdown.addEventListener("change", () => {
   Ui.toggleBookTypeFields(
     printedBookContainer,
