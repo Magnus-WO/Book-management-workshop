@@ -49,6 +49,11 @@
   padding: var(--spacing-small);
 }
 
+.form__printed-book,
+.form__audio-book {
+  width: 100%;
+}
+
 .form select {
   width: 100%;
   min-height: 32px;
