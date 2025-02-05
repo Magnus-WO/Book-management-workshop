@@ -1,4 +1,5 @@
 import Ui from "./ui.js";
+import BookManager from "./bookManager.js";
 
 // Select DOM elements
 const openAddModalButton = document.querySelector(".add-books__button");
@@ -28,16 +29,12 @@ const durationInput = document.querySelector(".form__duration-input");
 
 // All elements in printed and audio category
 const printedFields = [
-  document.querySelector(
-    ".form__pages-input",
-    document.querySelector(".form__print-type")
-  ),
+  document.querySelector(".form__pages-input"),
+  document.querySelector(".form__print-type"),
 ];
 const audioFields = [
-  document.querySelector(
-    ".form__narrator-input",
-    document.querySelector(".form__duration-input")
-  ),
+  document.querySelector(".form__narrator-input"),
+  document.querySelector(".form__duration-input"),
 ];
 
 // Adding eventlisteners
@@ -61,5 +58,20 @@ bookTypeDropdown.addEventListener("change", () => {
     printedFields,
     audioFields,
     bookTypeDropdown.value
+  );
+});
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  BookManager.addBook(
+    title.value.trim(),
+    author.value.trim(),
+    publisher.value.trim(),
+    date.value,
+    bookTypeDropdown.value,
+    pagesInput.value.trim(),
+    pagesPrintType.value,
+    narratorInput.value.trim(),
+    durationInput.value
   );
 });
