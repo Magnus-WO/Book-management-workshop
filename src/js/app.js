@@ -45,11 +45,11 @@ document.addEventListener("DOMContentLoaded", () => {
     printedBookContainer,
     audioBookContainer
   );
+  Ui.closeAddModal(closeAddModalButton, formModal);
+  Ui.renderBooks();
 });
 
-document.addEventListener("click", () => {
-  Ui.closeAddModal(closeAddModalButton, formModal);
-});
+// document.addEventListener("click", () => {});
 
 bookTypeDropdown.addEventListener("change", () => {
   Ui.toggleBookTypeFields(
@@ -74,4 +74,5 @@ form.addEventListener("submit", (e) => {
     narratorInput.value.trim(),
     durationInput.value
   );
+  Ui.renderBooks();
 });

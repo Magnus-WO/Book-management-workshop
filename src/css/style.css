@@ -14,7 +14,7 @@ body {
   justify-content: center;
   align-items: center;
   padding: var(--spacing-large) 0;
-  background-color: var(--background-color-1);
+  background-image: var(--color-background-dark-gradient);
   color: var(--font-color-main);
 }
 
@@ -32,7 +32,7 @@ main {
 .tools-container {
   display: flex;
   padding: var(--spacing-small);
-  background-color: var(--background-color-1);
+  background-image: var(--color-background-dark-gradient);
 }
 
 .filter-books {

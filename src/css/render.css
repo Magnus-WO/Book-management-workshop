@@ -1,0 +1,63 @@
+.books {
+  width: 100%;
+  height: 100%;
+}
+
+.books__list {
+  min-width: 400px;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-small);
+
+  padding: var(--spacing-medium);
+  border-radius: var(--border-radius);
+  border: 2px solid black;
+  margin: 0 auto;
+}
+
+.book-item {
+  width: 100%;
+  display: flex;
+  border-radius: var(--border-radius);
+  background-color: var(--background-color-1);
+}
+.book-item h3 {
+  color: var(--font-color-main);
+}
+
+.book-item span {
+  color: var(--font-color-secondary);
+}
+.book-item__details-container {
+  width: 100%;
+  flex-basis: 90%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-small);
+  padding: var(--spacing-small);
+}
+
+.book-item__details-container div {
+  display: flex;
+  gap: var(--spacing-small);
+  align-items: center;
+}
+
+.book-item__tools-container {
+  width: 30%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-end;
+  border: 2px solid red;
+}
+
+.book-item__delete-button,
+.book-item__edit-button {
+  min-height: 48px;
+  height: 50%;
+  width: 100%;
+  flex: 1;
+}
