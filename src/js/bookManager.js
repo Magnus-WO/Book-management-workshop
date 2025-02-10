@@ -1,5 +1,7 @@
 import AudioBook from "./audioBook";
+import Book from "./book";
 import PrintedBook from "./printedBooks";
+import Ui from "./ui";
 
 class BookManager {
   static booksCollection =
@@ -37,12 +39,19 @@ class BookManager {
         durationInput
       );
     }
-    this.booksCollection.push(book);
-    this.storeBooks(this.booksCollection);
+    BookManager.booksCollection.push(book);
+    BookManager.storeBooks(this.booksCollection);
     console.log(this.booksCollection);
   }
   static storeBooks(booksCollection) {
     localStorage.setItem("books-collection", JSON.stringify(booksCollection));
+  }
+  static deleteBook(id) {
+    BookManager.booksCollection = BookManager.booksCollection.filter((book) => {
+      return book.id !== id;
+    });
+    BookManager.storeBooks(BookManager.booksCollection);
+    Ui.renderBooks();
   }
 }
 

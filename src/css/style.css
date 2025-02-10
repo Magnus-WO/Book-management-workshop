@@ -124,3 +124,9 @@ main {
 .delete-modal__cancel-button:hover {
   opacity: 0.7;
 }
+
+.display-modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

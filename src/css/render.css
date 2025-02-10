@@ -67,6 +67,7 @@
 
   background-color: var(--background-color-buttons);
   color: var(--font-color-secondary);
+  border-radius: var(--border-radius);
 }
 .book-item__delete-button:hover,
 .book-item__edit-button:hover {
