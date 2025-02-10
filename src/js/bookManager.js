@@ -2,6 +2,8 @@ import AudioBook from "./audioBook";
 import PrintedBook from "./printedBooks";
 
 class BookManager {
+  static booksCollection =
+    JSON.parse(localStorage.getItem("books-collection")) || [];
   static addBook(
     title,
     author,
@@ -35,7 +37,8 @@ class BookManager {
         durationInput
       );
     }
-    console.log(book);
+    this.booksCollection.push(book);
+    console.log(this.booksCollection);
   }
 }
 
