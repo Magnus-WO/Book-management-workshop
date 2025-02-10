@@ -142,6 +142,11 @@ class Ui {
         bookToolsContainer.classList.add("book-item__tools-container");
         deleteButton.classList.add("book-item__delete-button");
         editButton.classList.add("book-item__edit-button");
+
+        //Add eventlisteners to the buttons
+        deleteButton.addEventListener("click", () => {
+          displayDeleteModal();
+        });
       });
     }
   }
