@@ -12,7 +12,7 @@
 
   padding: var(--spacing-medium);
   border-radius: var(--border-radius);
-  border: 2px solid black;
+
   margin: 0 auto;
 }
 
@@ -45,13 +45,13 @@
 }
 
 .book-item__tools-container {
-  width: 30%;
+  width: 20%;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-end;
-  border: 2px solid red;
+  gap: var(--spacing-small);
 }
 
 .book-item__delete-button,
@@ -60,4 +60,7 @@
   height: 50%;
   width: 100%;
   flex: 1;
+
+  background-color: var(--background-color-buttons);
+  color: var(--font-color-secondary);
 }
