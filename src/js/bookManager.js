@@ -17,6 +17,8 @@ class BookManager {
     narratorInput,
     durationInput
   ) {
+    const latestCollection =
+      JSON.parse(localStorage.getItem("books-collection")) || [];
     let book;
     if (bookType === "printed-book") {
       book = new PrintedBook(
@@ -39,19 +41,56 @@ class BookManager {
         durationInput
       );
     }
-    BookManager.booksCollection.push(book);
-    BookManager.storeBooks(this.booksCollection);
+    latestCollection.push(book);
+    this.storeBooks(latestCollection);
+    BookManager.booksCollection = latestCollection;
     console.log(this.booksCollection);
   }
   static storeBooks(booksCollection) {
     localStorage.setItem("books-collection", JSON.stringify(booksCollection));
   }
   static deleteBook(id) {
-    BookManager.booksCollection = BookManager.booksCollection.filter((book) => {
+    const latestCollection = JSON.parse(
+      localStorage.getItem("books-collection")
+    );
+    BookManager.booksCollection = latestCollection.filter((book) => {
       return book.id !== id;
     });
     BookManager.storeBooks(BookManager.booksCollection);
     Ui.renderBooks();
+  }
+  static editBook(
+    id,
+    title,
+    author,
+    publisher,
+    date,
+    bookType,
+    pages,
+    printType,
+    narrator,
+    duration
+  ) {
+    const latestCollection = JSON.parse(
+      localStorage.getItem("books-collection")
+    );
+    const bookIndex = latestCollection.findIndex((book) => book.id === id);
+    if (bookIndex !== -1) {
+      latestCollection[bookIndex] = {
+        id,
+        title,
+        author,
+        publisher,
+        date,
+        bookType,
+        pages,
+        printType,
+        narrator,
+        duration,
+      };
+    }
+    BookManager.storeBooks(latestCollection);
+    BookManager.booksCollection = latestCollection;
   }
 }
 

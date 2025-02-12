@@ -1,6 +1,7 @@
 import BookManager from "./bookManager";
 
 class Ui {
+  static currentEditId = null;
   static toggleBookTypeFields(
     printedBookContainer,
     audioBookContainer,
@@ -64,6 +65,54 @@ class Ui {
     cancelDeleteButton.addEventListener("click", () => {
       deleteModal.classList.remove("display-modal");
     });
+  }
+
+  static displayEditModal() {
+    const formModal = document.querySelector(".form-modal");
+    const formSubmitButton = document.querySelector(".form__add-button");
+    formModal.classList.add("display-form");
+    formSubmitButton.textContent = "Confirm edit";
+  }
+
+  static populateEditForm(id) {
+    //Selecting elements
+    const title = document.querySelector(".form__title-input");
+    const author = document.querySelector(".form__author-input");
+    const publisher = document.querySelector(".form__publisher-input");
+    const date = document.querySelector(".form__publication-date-input");
+    const bookTypeDropdown = document.querySelector(".form__book-type");
+
+    const printedBookContainer = document.querySelector(".form__printed-book");
+    const audioBookContainer = document.querySelector(".form__audio-book");
+
+    const pagesInput = document.querySelector(".form__pages-input");
+    const pagesPrintType = document.querySelector(".form__print-type");
+
+    const narratorInput = document.querySelector(".form__narrator-input");
+    const durationInput = document.querySelector(".form__duration-input");
+
+    //
+    const bookToEdit = BookManager.booksCollection.find(
+      (book) => book.id === id
+    );
+    title.value = bookToEdit.title;
+    author.value = bookToEdit.author;
+    publisher.value = bookToEdit.publisher;
+    date.value = bookToEdit.date;
+    bookTypeDropdown.value = bookToEdit.bookType;
+
+    if (bookToEdit.bookType === "printed-book") {
+      audioBookContainer.style.display = "none";
+      printedBookContainer.style.display = "block";
+      pagesInput.value = bookToEdit.pages;
+      pagesPrintType.value = bookToEdit.printType;
+    } else {
+      audioBookContainer.style.display = "block";
+      printedBookContainer.style.display = "none";
+      narratorInput.value = bookToEdit.narrator;
+      durationInput.value = bookToEdit.duration;
+    }
+    Ui.currentEditId = id;
   }
 
   // Rendering the books collection
@@ -172,6 +221,10 @@ class Ui {
         //Add eventlisteners to the buttons
         deleteButton.addEventListener("click", () => {
           Ui.displayDeleteModal(book.id, book.title);
+        });
+        editButton.addEventListener("click", () => {
+          Ui.displayEditModal();
+          Ui.populateEditForm(book.id);
         });
       });
     }
