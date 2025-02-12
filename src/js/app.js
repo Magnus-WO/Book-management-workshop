@@ -1,5 +1,6 @@
 import Ui from "./ui.js";
 import BookManager from "./bookManager.js";
+import Validation from "./validation.js";
 
 // Select DOM elements
 const openAddModalButton = document.querySelector(".add-books__button");
@@ -18,6 +19,7 @@ const bookTypeDropdown = document.querySelector(".form__book-type");
 
 const filterContainer = document.querySelector(".filter-books");
 const formSubmitButton = document.querySelector(".form__add-button");
+const validationMessage = document.querySelector(".form__validation-message");
 
 //Selecting elements specific to PRINTED books
 const pagesInput = document.querySelector(".form__pages-input");
@@ -45,7 +47,13 @@ document.addEventListener("DOMContentLoaded", () => {
     printedBookContainer,
     audioBookContainer
   );
-  Ui.closeAddModal(closeAddModalButton, formModal);
+  Ui.closeAddModal(
+    closeAddModalButton,
+    formModal,
+    form,
+    validationMessage,
+    formSubmitButton
+  );
   Ui.closeDeleteModal();
   Ui.renderBooks();
 });
@@ -64,6 +72,9 @@ bookTypeDropdown.addEventListener("change", () => {
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
+  if (!Validation.validateForm(bookTypeDropdown.value, validationMessage)) {
+    return;
+  }
   if (!Ui.currentEditId) {
     BookManager.addBook(
       title.value.trim(),

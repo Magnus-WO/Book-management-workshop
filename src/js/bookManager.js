@@ -91,6 +91,7 @@ class BookManager {
     }
     BookManager.storeBooks(latestCollection);
     BookManager.booksCollection = latestCollection;
+    document.querySelector(".form__add-button").textContent = "Add";
   }
 }
 
